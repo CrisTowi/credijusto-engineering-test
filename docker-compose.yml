@@ -1,0 +1,13 @@
+version: '2'
+services:
+  credijusto-engineering-test:
+    image: credijusto/test
+    build: .
+    command: nodemon app.js
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    ports:
+      - "4000:4000"
