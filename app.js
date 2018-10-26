@@ -113,8 +113,12 @@ app.get("/", async (req, res) => {
   }
 
   // Check if the clien has exceded the number of requests 1 per 3 seconds
-  const hasExceded = await validateExcess(req.query.token, tokens);
-  if (hasExceded) {
+  const { exceed, newTokens } = validateExcess(req.query.token, tokens);
+
+  // Set the updated list of tokens
+  setAsync("tokens", JSON.stringify(newTokens));
+
+  if (exceed) {
     res.send(JSON.stringify({
       ok: false,
       message: "You have exceded the power of this token"

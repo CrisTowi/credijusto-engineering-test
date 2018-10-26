@@ -1,14 +1,14 @@
 const crypto = require('crypto');
-const { setAsync } = require("../Helpers/redisClient");
 
+// Make the token combining the IP of the user and a secret key
 const makeToken = (ip) => {
-  return sha256(ip + process.env.HASH_SECRET);
+  return crypto
+    .createHash('sha256')
+    .update(ip + process.env.HASH_SECRET, 'utf8')
+    .digest('hex');  
 }
 
-const sha256 = (data) => {
-  return crypto.createHash('sha256').update(data, 'utf8').digest('hex');
-}
-
+// Check if the token exists in the tokens list
 const tokenExist = (token, tokens) => {
   return tokens.reduce((prevVal, tokenItem) => {
     if (tokenItem.token === token) {
@@ -19,7 +19,8 @@ const tokenExist = (token, tokens) => {
   }, false);
 }
 
-const validateExcess = async (token, tokens) => {
+// Validate if the token has exceded its limits of requests every 3 seconds
+const validateExcess = (token, tokens) => {
   const selectedToken = tokens.find(tokenItem => tokenItem.token === token);
   const now = new Date();
   const lastUsed = new Date(selectedToken.lastUsed);
@@ -32,14 +33,14 @@ const validateExcess = async (token, tokens) => {
     return tokenItem;
   });
 
-  setAsync("tokens", JSON.stringify(newTokens));
-
-  return Math.abs(now.getTime() - lastUsed.getTime()) < 3000;
+  return {
+    exceed: Math.abs(now.getTime() - lastUsed.getTime()) < 3000,
+    newTokens: newTokens
+  };
 }
 
 module.exports = {
   tokenExist,
   makeToken,
-  validateExcess,
-  sha256
+  validateExcess
 };

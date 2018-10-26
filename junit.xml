@@ -1,0 +1,10 @@
+<testsuites name="jest tests" tests="3" failures="0" time="1.48">
+  <testsuite name="Token helpers functionality" errors="0" failures="0" skipped="0" timestamp="2018-10-26T20:51:24" time="0.71" tests="3">
+    <testcase classname="Token helpers functionality Should make a token" name="Token helpers functionality Should make a token" time="0.006">
+    </testcase>
+    <testcase classname="Token helpers functionality Should check if a token exists in the list of tokens" name="Token helpers functionality Should check if a token exists in the list of tokens" time="0.001">
+    </testcase>
+    <testcase classname="Token helpers functionality Should validate if the toke exceded its time" name="Token helpers functionality Should validate if the toke exceded its time" time="0.001">
+    </testcase>
+  </testsuite>
+</testsuites>
