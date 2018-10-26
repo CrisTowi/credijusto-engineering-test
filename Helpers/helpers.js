@@ -78,7 +78,6 @@ const getBanxico = async () => {
     };
   } catch (error) {
     console.log(error);
-
     return {};
   }
 }
