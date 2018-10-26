@@ -1,10 +1,18 @@
-<testsuites name="jest tests" tests="3" failures="0" time="1.48">
-  <testsuite name="Token helpers functionality" errors="0" failures="0" skipped="0" timestamp="2018-10-26T20:51:24" time="0.71" tests="3">
-    <testcase classname="Token helpers functionality Should make a token" name="Token helpers functionality Should make a token" time="0.006">
+<testsuites name="jest tests" tests="6" failures="0" time="2.942">
+  <testsuite name="Token helpers functionality" errors="0" failures="0" skipped="0" timestamp="2018-10-26T21:18:24" time="0.521" tests="3">
+    <testcase classname="Token helpers functionality Should make a token" name="Token helpers functionality Should make a token" time="0.007">
     </testcase>
     <testcase classname="Token helpers functionality Should check if a token exists in the list of tokens" name="Token helpers functionality Should check if a token exists in the list of tokens" time="0.001">
     </testcase>
     <testcase classname="Token helpers functionality Should validate if the toke exceded its time" name="Token helpers functionality Should validate if the toke exceded its time" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Helpers functionalities" errors="0" failures="0" skipped="0" timestamp="2018-10-26T21:18:24" time="1.737" tests="3">
+    <testcase classname="Helpers functionalities Should format fixer&apos;s data" name="Helpers functionalities Should format fixer&apos;s data" time="0.006">
+    </testcase>
+    <testcase classname="Helpers functionalities Should format Diario Oficial&apos;s data" name="Helpers functionalities Should format Diario Oficial&apos;s data" time="0.001">
+    </testcase>
+    <testcase classname="Helpers functionalities Should format Banxico&apos;s information" name="Helpers functionalities Should format Banxico&apos;s information" time="0.041">
     </testcase>
   </testsuite>
 </testsuites>

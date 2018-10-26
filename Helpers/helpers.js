@@ -1,13 +1,32 @@
+// Libraries
 const axios = require("axios");
 const rp = require("request-promise");
 const cheerio = require("cheerio");
 
 const formatFixer = (data) => {
-  const lastUpdated = new Date(data.timestamp);
+  const splittedDate = data.date.split("-");
 
   return {
     value: data.rates.USD.toString(),
-    last_updated: lastUpdated
+    last_updated: new Date(splittedDate[0], splittedDate[1], splittedDate[2])
+  };
+}
+
+const formatDiarioOficial = (value, date) => {
+  const splittedDate = date.split("/");
+
+  return {
+    value: value,
+    last_updated: new Date(splittedDate[2], splittedDate[1], splittedDate[0])
+  };
+}
+
+const formatBanxico = (data) => {
+  const splittedDate = data.fecha.split("/");
+
+  return {
+    value: data.dato,
+    last_updated: new Date(splittedDate[2], splittedDate[1], splittedDate[0])
   };
 }
 
@@ -52,12 +71,10 @@ const getDiarioOficial = async () => {
       }
     });
   
-    return {
-      value: value,
-      last_updated: date
-    };
+    return formatDiarioOficial(value, date);
   } catch (error) {
     console.log(error);
+
     return {};
   }
 }
@@ -72,17 +89,18 @@ const getBanxico = async () => {
 
     const data = result.data.bmx.series[0].datos[0];
 
-    return {
-      last_updated: data.fecha,
-      value: data.dato
-    };
+    return formatBanxico(data);
   } catch (error) {
     console.log(error);
+
     return {};
   }
 }
 
 module.exports = {
+  formatFixer,
+  formatDiarioOficial,
+  formatBanxico,
   getFixer,
   getDiarioOficial,
   getBanxico

@@ -34,7 +34,7 @@ const validateExcess = (token, tokens) => {
   });
 
   return {
-    exceed: Math.abs(now.getTime() - lastUsed.getTime()) < 3000,
+    exceed: Math.abs(now.getTime() - lastUsed.getTime()) < parseInt(process.env.MILISECONDS, 10),
     newTokens: newTokens
   };
 }

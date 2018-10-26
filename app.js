@@ -146,6 +146,6 @@ app.get("/", async (req, res) => {
   res.send(JSON.stringify(result));
 });
 
-app.listen(4000, () => {
-  console.log(`Listening  4000`);
+app.listen(parseInt(process.env.PORT, 10), () => {
+  console.log(`Listening  ${process.env.PORT}`);
 });
